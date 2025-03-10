@@ -11,3 +11,5 @@ to assess a patient’s likelihood of developing these diseases.
 We will use several machine learning techniques to identify high-risk diets, life 
 factors, and individual characteristics to reveal patterns that could aid in early detection and 
 prevention.
+
+A link to the machine learning prediction model: https://project-4-diabetes.streamlit.app/
