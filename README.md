@@ -18,7 +18,7 @@ Publicly available datasets utilized included :
 - https://risktest-api.diabetes.org/#:~:text=The%20Risk%20Test%20API%20uses,will%20expire%20aŌer%2060%20minutes. 
 
 Our primary dataset comes from the 2015 Behavioral Risk Factor Surveillance System provided by the CDC.  This dataset has over 250,000 records of individuals being asked about their health.
-diabetes_binary_health_indicators_BRFSS2015.csv
+- Filename: diabetes_binary_health_indicators_BRFSS2015.csv
 
 In each dataset, the following symptoms are indicators of Prediabetes, Diabetes, or Heart Disease:
 High Blood Pressure		
