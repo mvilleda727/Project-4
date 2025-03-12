@@ -60,18 +60,18 @@ Given the BRFSS vast data, there were 330 columns of patient data, date and time
 
 ## Machine Learning Predictive Model
 The main file in the repository for the predictive model is the app.py file.  In this file, the below steps are taken to create and run this predictive machine learning model:
-- The CSV dataset mentioned above is red into a Pandas dataframe
+- The CSV dataset mentioned above is read into a Pandas dataframe
 - The column headers are renamed into human-readable formats to be used later as user selections
 - Categories for Age and Sex are created to be used in selectable radio buttons
 - Streamlit is called, user inputs dictionaries are created, and fields are built for users to input Height and Weight (to calculate BMI), age, general health rating, gender, and selectable boxes with categories derived directly from the columns of the dataset
 - These user input boxes, checkboxes, and radio buttons are organized with for loops across multiple columns in the Streamlit page building to make the GUI pleasant and legible
 - A web URL is created by Streamlit from this code which any user can load.  A cloud-based virtualization is created by Streamlit to run the dependencies and properly load the code from the app.py file.  This Streamlit URL updates automatically if the app.py file is changed
-- When the user enters values in these boxes, checks the checkboxes, and clicks on a value in the radio button, they are stored in the preloaded dictionaries as values to be used in the prediction model training
-- When the user clicks the “Click here to begin training the prediction model” button, selected and entered dataset features are loaded as the X variable in the model training, and the target (y) variable is set to the Diabetes column showing if the person polled No Diabetes (0), or has prediabetes OR diabetes (1)
-- This data is trained and split
-- The model is defined with Keras layers, relu and sigmoid activation functions, and an adam optimizer
+- When the user clicks the "Train Model" buttom, the model is trained using Keras and machine learning techniques to be called later for the prediction phase
+  - The model is defined with Keras layers, relu and sigmoid activation functions, and an adam optimizer
 - The model begins to run, and each Epoch row as it runs is displayed in the Streamlit text box at the bottom of the GUI screen
-- When the model finishes going through the Epochs and the model is evaluated, a prediction is made with the user-inputted data compared against the dataset
+- When the user enters values in these boxes, checks the checkboxes, and clicks on a value in the radio button, they are stored in the preloaded dictionaries as values to be used in the prediction model inputs
+- When the user clicks the “Click here to predict your diabetes risk” button, selected and entered user inputs are passed into the predict function in this model showing the likelihood of the person polled having No Diabetes (0), or has prediabetes OR diabetes (1)
+- This data is trained and split
 - If the predicted value is 1 (the user does have a high risk of having prediabetes and diabetes), a message of High Risk of Diabetes is displayed.  If the predicted value is 0 (the user does not have a risk of having diabetes), a message of Low Risk of Diabetes is displayed
 
 ## Tableau and Data Visualization
