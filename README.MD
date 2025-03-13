@@ -39,7 +39,7 @@ High Blood Pressure
 - Education
 - Income
 
-For our calculations to predict the risk of diagnosis, we will examine all the following variables except for income and education. While we acknowledge that socioeconomic factors can influence general health outcomes, for our project, we have excluded Income and Education from our predictive calculations as they don’t contribute meaningfully to the prediction model.  
+For our calculations to predict the risk of diagnosis, we will examine all the following variables and train the model 
 
 In addition, our datasets contain records that indicate whether a patient has been diagnosed with diabetes. These records were derived from a variety of trusted data sources, including:
 - Centers for Disease Control and Prevention (CDC)
@@ -56,22 +56,30 @@ In addition, our datasets contain records that indicate whether a patient has be
 - U.S. Resident Population Estimates
 
 ## Data Clean-Up
-Given the BRFSS vast data, there were 330 columns of patient data, date and time surveys were taken, and other more unrelated data according to the CDC and diabetesatlas.org, we focused on 22 distinguishable factors best to predict the risk of a diagnosis of diabetes 
+Given the BRFSS vast data, there were 330 columns of patient data, date and time surveys were taken, and other more unrelated data according to the CDC and diabetesatlas.org, we focused on 21 distinguishable factors best to predict the risk of a diagnosis of diabetes.  But, when training the model the first time with all 250,000+ records, the prediction model consistently predicted low chance of diabetes no matter what the user inputted for the prediction.  This is because the two classes 0-No Diabetes and 1-Diabetes were way too imbalanced.  Even when all the factors that contribued to a positive Diabetes result, the model still predicted a near-zero chance just because the 0 result represented 84% of the dataset.
+
+We looked at several different ways to resolve this (value weights, Synthetic Oversampling Technique SMOTE, etc.), but with such a skewed and imbalanced dataset, even these techniques did not compensate for the major class imbalance and the prediction result still always was close to 0.  So, to rectify this and simply showcase that the model worked with high accuracy, we tweaked the dataset CSV to have a more balanced class between 0 and 1 in the Diabetes_binary column.  It is now closer to 50/50.  Once this change was made, the prediction model behaved correctly.
 
 ## Machine Learning Predictive Model
-The main file in the repository for the predictive model is the app.py file.  In this file, the below steps are taken to create and run this predictive machine learning model:
-- The CSV dataset mentioned above is red into a Pandas dataframe
-- The column headers are renamed into human-readable formats to be used later as user selections
+The model training file in this repository is train_model.py.  In this file, the below steps are taken to create and run this predictive machine learning model:
+- The CSV dataset is read into the file, the X features are set to the right 21 columns, and the y target feature is the Diabetes_binary column
+- The data is scaled with the Standard Scalar
+- The model is defined with 5 Keras layers, relu and sigmoid activation functions, and an adam optimizer
+- A TrainingLogger class is created to offload the log results of the model training running
+- The model is fit with 100 epochs, batch size of 64, verbose set to 1, and a callback to the logger to log each epoch being run
+- The model begins to run, and each Epoch row as it runs it is saved in the logging text file
+- When the model finishes going through the Epochs and the model is evaluated, the model and scalar are saved into separate files (diabetes_model.h5, scaler.pk1) to be called in the app.py file
+
+The file that handles the prediction and creating the Streamlit GUI is called app.py.  It performs the below:
+- The model, scalar, and logging file are loaded into this file for use
+- the logging file is loaded and displayed at the top of the Streamlit page to show what each Epoch loaded at what accuracy rate
+- The column headers of the dataset are renamed into human-readable formats to be used later as user selections
 - Categories for Age and Sex are created to be used in selectable radio buttons
 - Streamlit is called, user inputs dictionaries are created, and fields are built for users to input Height and Weight (to calculate BMI), age, general health rating, gender, and selectable boxes with categories derived directly from the columns of the dataset
 - These user input boxes, checkboxes, and radio buttons are organized with for loops across multiple columns in the Streamlit page building to make the GUI pleasant and legible
 - A web URL is created by Streamlit from this code which any user can load.  A cloud-based virtualization is created by Streamlit to run the dependencies and properly load the code from the app.py file.  This Streamlit URL updates automatically if the app.py file is changed
 - When the user enters values in these boxes, checks the checkboxes, and clicks on a value in the radio button, they are stored in the preloaded dictionaries as values to be used in the prediction model training
-- When the user clicks the “Click here to begin training the prediction model” button, selected and entered dataset features are loaded as the X variable in the model training, and the target (y) variable is set to the Diabetes column showing if the person polled No Diabetes (0), or has prediabetes OR diabetes (1)
-- This data is trained and split
-- The model is defined with Keras layers, relu and sigmoid activation functions, and an adam optimizer
-- The model begins to run, and each Epoch row as it runs is displayed in the Streamlit text box at the bottom of the GUI screen
-- When the model finishes going through the Epochs and the model is evaluated, a prediction is made with the user-inputted data compared against the dataset
+- When the user clicks the “Click for diabetes prediction” button, selected and entered dataset features are loaded as scaled X features in the prediction model, and the target (y) variable is set to the Diabetes column showing if the person polled No Diabetes (0), or has prediabetes OR diabetes (1)
 - If the predicted value is 1 (the user does have a high risk of having prediabetes and diabetes), a message of High Risk of Diabetes is displayed.  If the predicted value is 0 (the user does not have a risk of having diabetes), a message of Low Risk of Diabetes is displayed
 
 ## Tableau and Data Visualization
