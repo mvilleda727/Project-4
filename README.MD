@@ -1,4 +1,4 @@
-# Project-4 | Machine Learning in Healthcare – Predicting Diabetes and Heart Disease Risks 
+# Project-4 | Machine Learning in Healthcare – Predicting Diabetes
 Group 1 Members: Maha Pentakota, Sapir Madar Coulson, Michael Villeda, Ana Garcia, Daniel Grimm 
 
 ### Link to Streamlit Web URL to run predictive model: https://project-4-diabetes.streamlit.app/
