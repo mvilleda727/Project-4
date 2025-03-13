@@ -3,6 +3,11 @@ Group 1 Members: Maha Pentakota, Sapir Madar Coulson, Michael Villeda, Ana Garci
 
 ### Link to Streamlit Web URL to run predictive model: https://project-4-diabetes.streamlit.app/
 
+### Tableau links to vizualization data:
+
+- https://public.tableau.com/app/profile/maha.pentakota/viz/project4-03102025/Story1?publish=yes
+- https://public.tableau.com/app/profile/sapir.madar.coulson/viz/shared/54X8M6BKZ
+
 ## Project Proposal: Machine Learning in Healthcare – Predicting Diabetes
 
 For our project, we developed a machine learning model to analyze and predict the risks of diabetes based on factors derived from a survey of over 250,000 individuals by the CDC. Using the common factors from this dataset we can have a new individual answer the same questions in an efficient manner and train the model using these answers. The dataset that was utilized was sourced from reputable organizations and agencies allowing public use. The model aims to visualize trends between symptoms and characteristics to deliver an unbiased and accurate result according to the data provided. The results provided may reveal patterns that aid in early detection.  However, consulting a medical professional is always advised.
@@ -91,4 +96,3 @@ We loaded several of the datasets we sourced into Tableau in order to generate v
 - Tableau (Data Visualization)
 - Tensorflow/Keras (Predictive Machine Learning Model Training)
 - Powerpoint (Presentation)
-
