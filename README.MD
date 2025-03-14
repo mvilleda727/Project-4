@@ -65,6 +65,8 @@ Given the BRFSS vast data, there were 330 columns of patient data, date and time
 
 We looked at several different ways to resolve this (value weights, Synthetic Oversampling Technique SMOTE, etc.), but with such a skewed and imbalanced dataset, even these techniques did not compensate for the major class imbalance and the prediction result still always was close to 0.  So, to rectify this and simply showcase that the model worked with high accuracy, we tweaked the dataset CSV to have a more balanced class between 0 and 1 in the Diabetes_binary column.  It is now closer to 50/50.  Once this change was made, the prediction model behaved correctly.
 
+We did create a Jupyter notebook named Clean Data.ipynb which cleans the CSV datasets which were used in the Tableau visualizations.  
+
 ## Machine Learning Predictive Model
 The model training file in this repository is train_model.py.  In this file, the below steps are taken to create and run this predictive machine learning model:
 - The CSV dataset is read into the file, the X features are set to the right 21 columns, and the y target feature is the Diabetes_binary column
@@ -88,7 +90,9 @@ The file that handles the prediction and creating the Streamlit GUI is called ap
 - If the predicted value is 1 (the user does have a high risk of having prediabetes and diabetes), a message of High Risk of Diabetes is displayed.  If the predicted value is 0 (the user does not have a risk of having diabetes), a message of Low Risk of Diabetes is displayed
 
 ## Tableau and Data Visualization
-We loaded several of the datasets we sourced into Tableau in order to generate visualizations that properly display the relationship of some of the more severe factors as they relate to the liklihood of a Diabetes diagnosis (smoking, high blood pressure, high cholesterol, etc.)
+We loaded several of the datasets we sourced into Tableau in order to generate visualizations that properly display the relationship of some of the more severe factors as they relate to the liklihood of a Diabetes diagnosis (smoking, high blood pressure, high cholesterol, etc.).  The dataset used in the visualization included the below CSV files to create Tableau Dashbaords and stories in order to visually represent what the features of the data meant and how they related to the number of diabetes cases around the country.
+  - project4_data.csv
+  - diabetes_binary_health_indicators_BRFSS2015.csv
 
 ## Libraries and Data Models Used
 - Spark (reading in the dataset and creating Pandas dataframe)
